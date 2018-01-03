@@ -8,6 +8,8 @@
 
 import FBSDKCoreKit
 import Firebase
+import FirebaseDatabase
+import FirebaseAuth
 import TwitterKit
 import UIKit
 
@@ -22,8 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         // Facebook
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        // Twitter
-        TWTRTwitter.sharedInstance().start(withConsumerKey: "4EGPDTV6CgnNT7SeuYNv6g7c8", consumerSecret: "    lggODKkni0SNE10Jcsh9tWKu8RgXi3xOwXCxWOhcUVmzWSjbs4")
+        // Twitter login
+        TWTRTwitter.sharedInstance().start(withConsumerKey: "4EGPDTV6CgnNT7SeuYNv6g7c8", consumerSecret: "lggODKkni0SNE10Jcsh9tWKu8RgXi3xOwXCxWOhcUVmzWSjbs4")
         return true
     }
 

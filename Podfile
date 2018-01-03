@@ -8,5 +8,7 @@ target 'Social network Share App' do
   # Pods for Social network Share App
 	pod 'TwitterKit'
     pod 'Firebase/Auth'
+    pod 'Firebase/Core'
+    pod 'Firebase/Database'
 
 end

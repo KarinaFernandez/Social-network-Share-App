@@ -8,21 +8,16 @@
 
 import FBSDKShareKit
 import Firebase
+import FirebaseAuth
 import SafariServices
 import TwitterKit
 import UIKit
-
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func shareInFacebook(_ sender: UIButton) {
@@ -31,49 +26,70 @@ class ViewController: UIViewController {
         
         let dialog = FBSDKShareDialog()
         dialog.fromViewController = self
-        
+        dialog.shareContent = content
+        dialog.mode = FBSDKShareDialogMode.native
+        if !dialog.canShow() {
+            // Open Safari in case that not Facebook app is installed
+            dialog.mode = FBSDKShareDialogMode.feedBrowser
+        }
         dialog.show()
     }
     
     @IBAction func shareInTwitter(_ sender: UIButton) {
-        if (TWTRTwitter.sharedInstance().sessionStore.hasLoggedInUsers()) {
-            // App must have at least one logged-in user to compose a Tweet
-            let composer = TWTRComposerViewController.emptyComposer()
-            present(composer, animated: true, completion: nil)
+        // If session exist and the app has been autorize, create tweet
+        let store = TWTRTwitter.sharedInstance().sessionStore
+        let lastSession = store.session()
+        if lastSession != nil {
+            // Create tweet
+            self.createTweet()
         } else {
-            // Log in, and then check again
-            TWTRTwitter.sharedInstance().logIn { session, error in
-                if session != nil { // Log in succeeded
-                    let composer = TWTRComposerViewController.emptyComposer()
-                    self.present(composer, animated: true, completion: nil)
+            TWTRTwitter.sharedInstance().logIn(completion: { (session, error) in
+                if session != nil {
+                    print("signed in as \(String(describing: session?.userName))")
+                    // Create tweet
+                    self.createTweet()
                 } else {
-                    let logInButton = TWTRLogInButton(logInCompletion: { session, error in
-                        if session != nil {
+                    // No user signed. - Login and authorize the app to create tweet
+                    print("error: \(String(describing: error?.localizedDescription))")
+                    // Twitter login button
+                    let twitterLogInButton = TWTRLogInButton { (session, error) in
+                        if error != nil {
+                            print("error")
+                        } else {
                             guard let authToken = session?.authToken else { return }
                             guard let authTokenSecret = session?.authTokenSecret else { return }
                             let credential = TwitterAuthProvider.credential(withToken: authToken, secret: authTokenSecret)
-                            
-                            Auth.auth().signIn(with: credential) { (user, error) in
-                                if let error = error {
-                                    print(error.localizedDescription)
+                            Auth.auth().signIn(with: credential, completion: { (user, error) in
+                                if error != nil {
+                                    print("Failed to login using Firebase: \(String(describing: error?.localizedDescription))")
                                     return
                                 }
-                            }
-                        } else {
-                            guard let url = URL(string: "https://twitter.com/") else { return }
-                            if #available(iOS 10.0, *) {
-                                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                            } else {
-                                UIApplication.shared.openURL(url)
-                            }
+                                // Create tweet
+                                self.createTweet()
+                            })
                         }
-                    })
-                    logInButton.center = self.view.center
-                    self.view.addSubview(logInButton)
+                    }
+                    // Show login button
+                    twitterLogInButton.center = self.view.center
+                    self.view.addSubview(twitterLogInButton)
                 }
-            }
+            })
         }
-        
     }
     
+    // Create tweet
+    func createTweet() {
+        let composer = TWTRComposer()
+        composer.setText("Sharingggg")
+        
+        // Called from a UIViewController
+        composer.show(from: self.navigationController!) { result in
+            if result == .done {
+                print("Successfully composed Tweet")
+            } else {
+                print("Cancelled composing")
+            }
+        }
+    }
+
 }

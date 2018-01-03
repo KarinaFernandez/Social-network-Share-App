@@ -17,7 +17,7 @@
 		9A8AD2911FF6D5D9005ACBB2 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8AD28E1FF6D5D9005ACBB2 /* FBSDKShareKit.framework */; };
 		9A8AD2931FF6D5EB005ACBB2 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8AD2921FF6D5EB005ACBB2 /* FBSDKLoginKit.framework */; };
 		9A8AD2951FFC169D005ACBB2 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8AD2941FFC169D005ACBB2 /* SafariServices.framework */; };
-		9A8AD2971FFC1B4E005ACBB2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A8AD2961FFC1B4E005ACBB2 /* GoogleService-Info.plist */; };
+		9A8AD2991FFD0FDF005ACBB2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A8AD2981FFD0FDF005ACBB2 /* GoogleService-Info.plist */; };
 		E1D2D431950D7FE8D8FDF710 /* Pods_Social_network_Share_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E80157B5E225C38F6F3D448A /* Pods_Social_network_Share_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,7 +35,7 @@
 		9A8AD28E1FF6D5D9005ACBB2 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		9A8AD2921FF6D5EB005ACBB2 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		9A8AD2941FFC169D005ACBB2 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
-		9A8AD2961FFC1B4E005ACBB2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9A8AD2981FFD0FDF005ACBB2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E80157B5E225C38F6F3D448A /* Pods_Social_network_Share_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Social_network_Share_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE516A73C188D41DADA7F403 /* Pods-Social network Share App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social network Share App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Social network Share App/Pods-Social network Share App.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,7 +106,7 @@
 				9A3C1DB11FF5647500A4723A /* Assets.xcassets */,
 				9A3C1DB31FF5647500A4723A /* LaunchScreen.storyboard */,
 				9A3C1DB61FF5647500A4723A /* Info.plist */,
-				9A8AD2961FFC1B4E005ACBB2 /* GoogleService-Info.plist */,
+				9A8AD2981FFD0FDF005ACBB2 /* GoogleService-Info.plist */,
 			);
 			path = "Social network Share App";
 			sourceTree = "<group>";
@@ -174,7 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A3C1DB51FF5647500A4723A /* LaunchScreen.storyboard in Resources */,
-				9A8AD2971FFC1B4E005ACBB2 /* GoogleService-Info.plist in Resources */,
+				9A8AD2991FFD0FDF005ACBB2 /* GoogleService-Info.plist in Resources */,
 				9A3C1DB21FF5647500A4723A /* Assets.xcassets in Resources */,
 				9A3C1DB01FF5647500A4723A /* Main.storyboard in Resources */,
 			);
@@ -212,6 +212,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -220,6 +221,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
